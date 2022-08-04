@@ -310,8 +310,7 @@ document.getElementById("shareButton").addEventListener("click", function() {
 	if (navigator.share) {
 	  navigator.share({
 	    title: document.title,
-	    text: "This",
-	    url: window.location.href
+	    url: "https://joey-wiley.github.io/spyfall/locations"
 	  })
 	  .then(() => console.log('Successful share'))
 	  .catch(error => console.log('Error sharing:', error));
