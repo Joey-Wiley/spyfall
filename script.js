@@ -148,7 +148,7 @@ function playersDone() {
 						  navigator.share({
 						    title: document.title,
 						    text: "Location List",
-						    url: window.location.href
+						    url: https://joey-wiley.github.io/spyfall/locations
 						  })
 						  .then(() => console.log('Successful share'))
 						  .catch(error => console.log('Error sharing:', error));
