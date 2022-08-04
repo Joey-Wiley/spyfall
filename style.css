@@ -1,0 +1,227 @@
+@media (max-width: 800px){
+  html, body {
+    height: 100dvh !important;
+	}
+}
+html, body {
+  height: 100vh;
+  margin: 0px;
+	background: linear-gradient(#4228c3, #007180);
+	background-color: #4228c3;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-family: "Lato", sans-serif;
+	overflow: hidden;
+} body {
+	position: relative;
+	width: 100vw;
+}
+	
+#textContainer {
+	background-color: #00000033;
+	width: 200px;
+	padding: 26px;
+	text-align: center;
+	border-radius: 10px;
+	transition: height 500ms, opacity 1s;
+	transition-timing-function: ease-in-out;
+	color: white;
+	font-weight: bold;
+}
+#locationsTextContainer {
+	background-color: #00000033;
+	width: 300px;
+	padding: 26px;
+	text-align: center;
+	border-radius: 10px;
+	transition: height 500ms, opacity 1s;
+	transition-timing-function: ease-in-out;
+	color: white;
+	font-weight: bold;
+}
+
+.bodyText {
+	color: white;
+	font-size: 16px;
+	font-weight: 500;
+	text-align: left;
+}
+
+.header {
+	color: white;
+	font-size: 28px;
+	font-weight: 900;
+	margin-bottom: 16px;
+}
+
+.centeredText {
+	text-align: center;
+} .centeredText:hover {
+	cursor: pointer;
+}
+
+#description {
+	margin-left: 20px;
+}
+
+#shareIcon {
+	height: 42px !important;
+	aspect-ratio: 1/1;
+}
+
+#newGameButton {
+	-webkit-tap-highlight-color: transparent;
+	background-color: #616bff;
+	font-weight: bold;
+	font-size: 16px;
+	border: 2px solid #5c67ff;
+	color: white;
+	border-radius: 7px;
+	padding: 7px;
+	transition: border-color 250ms, background-color 200ms, filter 100ms;
+} #newGameButton:hover {
+	cursor: pointer;
+	border: 2px solid #99aaff;
+	filter: drop-shadow(0px 2px 2px black);
+} #newGameButton:focus {
+	border: 2px solid #4766ff;
+	background-color: #1f2351;
+	filter: drop-shadow(0px 0px 2px black);
+	outline: none;
+}
+.innerButton {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin: auto;
+}
+img.buttonIcon {
+	margin-right: 5px;
+	height: 30px;
+	aspect-ratio: 1/1;
+}
+
+#shareIcon {
+	margin-bottom: -5px;
+	height: 40px !important;
+}
+
+#shareTextSpan {
+	transition-duration: 200ms;
+} #shareTextSpan:hover {
+	cursor: pointer;
+	opacity: 0.6; /* Real browsers */
+  filter: alpha(opacity = 60); /* MSIE */
+}
+
+#offscreenGradient {
+	height: 100vh;
+	width: 100vw;
+	position: absolute;
+	right: -100vw;
+	animation-timing-function: ease-in-out;
+	animation-fill-mode: forwards;
+	transition: opacity 1s;
+}
+
+@keyframes gradientMove {
+	from {right: -100vw}
+	to {right: 0vw}
+}
+
+#addPlayerButton {
+	border: 2px dashed white;
+	background-color: #00000020;
+	opacity: 0.8;
+	height: 48px;
+	border-radius: 5px;
+	color: white;
+	font-weight: 600;
+	font-size: 16px;
+} #addPlayerButton:hover {
+	cursor: pointer;
+	background-color: #45454520;
+}
+.playersBox {
+	background-color: #00000020;
+	opacity: 0.8;
+	height: 48px;
+	border-radius: 5px;
+	color: white;
+	font-weight: 600;
+	font-size: 16px;
+	display: flex;
+	transition-duration: 200ms;
+	margin-top: 10px;
+}
+.playerList {
+	justify-content: center;
+	align-items: center;
+	transition-duration: 300ms;
+	border: 3px solid #4343f400;
+	overflow: hidden;
+	white-space: nowrap;
+} .playerList:hover {
+	cursor: text;
+} .playerList:focus {
+	outline: none;
+	border: 3px solid #4343f4ff;
+}
+
+#startButton {
+	display: block;
+	width: 100%;
+	background-color: #1daa34;
+	margin-top: 18px;
+	margin-bottom: 0px;
+	-webkit-tap-highlight-color: transparent;
+	font-weight: bold;
+	font-size: 16px;
+	border: 2px solid #31a72f;
+	color: white;
+	border-radius: 7px;
+	transition: border-color 250ms, background-color 200ms, filter 100ms;
+} #startButton:hover {
+	cursor: pointer;
+	border: 2px solid #ccffcf;
+	filter: drop-shadow(0px 2px 2px black);
+} #startButton:focus {
+	border: 2px solid #47ff66;
+	background-color: #034523;
+	filter: drop-shadow(0px 0px 2px black);
+	outline: none;
+} #startButton:disabled {
+	filter: grayscale(25%);
+} #startButton:disabled:hover {
+	border-color: #5bb361;
+}
+
+#locationsList {
+	transition-duration: 200ms;
+} #locationsList:hover {
+	cursor: pointer;
+	opacity: 0.6;
+}
+
+.wordDiv {
+	background-color: #00000033;
+	padding: 5px;
+	border-radius: 5px;
+	margin-bottom: 5px;
+	font-weight: normal;
+	transition-duration: 200ms;
+} .wordDiv:hover {
+	cursor: pointer;
+}
+
+.noSelect {
+	-webkit-appearance: none;
+	-webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Old versions of Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome, Edge, Opera and Firefox */
+}
