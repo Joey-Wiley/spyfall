@@ -142,7 +142,7 @@ function playersDone() {
 					textContainer.style.backgroundColor = "transparent";
 					textContainer.style.fontSize = "28px";
 					textContainer.style.width = "auto";
-					textContainer.innerHTML = "Hand the phone back to its owner. The game can start now!<br><br><span id='locationsList' class='innerButton'><img id='shareIcon' class='buttonIcon' src='icons/share-icon.svg'>List of Locations</span>";
+					textContainer.innerHTML = "Hand the phone back to its owner. The game can start now!<br><br><span id='locationsList' class='innerButton'><img id='shareIcon' class='buttonIcon' src='icons/link-icon.svg'>List of Locations</span>";
 					document.getElementById("locationsList").addEventListener("click", function() {
 						window.open('https://joey-wiley.github.io/spyfall/locations', '_blank');
 					});
