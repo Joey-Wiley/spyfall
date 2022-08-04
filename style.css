@@ -13,6 +13,7 @@ html, body {
 	justify-content: center;
 	font-family: "Lato", sans-serif;
 	overflow: hidden;
+	flex-direction: column;
 } body {
 	position: relative;
 	width: 100vw;
@@ -41,6 +42,22 @@ html, body {
 	font-weight: bold;
 }
 
+#shareButton {
+	-webkit-tap-highlight-color: transparent;
+	background-color: #00000066;
+	font-weight: bold;
+	font-size: 26px;
+	color: white;
+	border-radius: 7px;
+	padding: 16px;
+	padding-right: 24px;
+	margin-top: 20px;
+	transition-duration: 200ms;
+} #shareButton:hover {
+	cursor: pointer;
+	background-color: #00000088;
+}
+
 .bodyText {
 	color: white;
 	font-size: 16px;
@@ -65,7 +82,7 @@ html, body {
 	margin-left: 20px;
 }
 
-#shareIcon {
+#linkIcon {
 	height: 42px !important;
 	aspect-ratio: 1/1;
 }
