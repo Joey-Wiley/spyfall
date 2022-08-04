@@ -144,7 +144,7 @@ function playersDone() {
 					textContainer.style.width = "auto";
 					textContainer.innerHTML = "Hand the phone back to its owner. The game can start now!<br><br><span id='locationsList' class='innerButton'><img id='shareIcon' class='buttonIcon' src='icons/share-icon.svg'>List of Locations</span>";
 					document.getElementById("locationsList").addEventListener("click", function() {
-						window.open(https://joey-wiley.github.io/spyfall/locations, '_blank');
+						window.open("https://joey-wiley.github.io/spyfall/locations", '_blank');
 						if (navigator.share) {
 						  navigator.share({
 						    title: document.title,
