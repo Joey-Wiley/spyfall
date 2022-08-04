@@ -309,7 +309,7 @@ for (i = 0; i < secondHalf.length; i++) {
 document.getElementById("shareButton").addEventListener("click", function() {
 	if (navigator.share) {
 	  navigator.share({
-	    title: document.title,
+	    title: "Spyfall Locations",
 	    url: "https://joey-wiley.github.io/spyfall/locations"
 	  })
 	  .then(() => console.log('Successful share'))
