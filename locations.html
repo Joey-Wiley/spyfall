@@ -11,12 +11,14 @@
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
 </head>
 
-<body>
+<body onload="locationsPageLoad()">
 
 	<div id="locationsTextContainer">
 		<div id="startingHeader" class="header">Locations</div>
-		<div id="locationsLeftColumn" style="width: calc(50% - 2.5px); float:left;"></div>
-		<div id="locationsRightColumn" style="width: calc(50% - 2.5px); float:right;"></div>
+		<span id="locationsMainCont">
+			<div id="locationsLeftColumn" style="width: calc(50% - 2.5px); float:left;"></div>
+			<div id="locationsRightColumn" style="width: calc(50% - 2.5px); float:right;"></div>
+		</span>
 	</div>
 	
 	<div id="shareButton" class="noSelect">
