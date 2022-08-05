@@ -8,6 +8,10 @@ function newGame() {
 		document.getElementById("startingHeader").innerHTML = "Players";
 		document.getElementById("newGameButton").parentElement.removeChild(document.getElementById("newGameButton"));
 
+		let playerListCont = document.createElement("span");
+		playerListCont.setAttribute("id", "playerListCont");
+		textContainer.appendChild(playerListCont);
+
 		let addPlayerButton = document.createElement("div");
 		addPlayerButton.setAttribute("id", "addPlayerButton");
 		addPlayerButton.setAttribute("class", "playersBox noSelect");
@@ -66,11 +70,12 @@ function addPlayer() {
 		}
 	});
 	addPlayerButton.innerHTML = "Player "+numPlayers;
-	textContainer.insertBefore(addPlayerButton, textContainer.children[textContainer.children.length-2]);
+	document.getElementById("playerListCont").appendChild(addPlayerButton);
 	if (players[1] !== undefined) {
 		document.getElementById("startButton").disabled = false;
 	}
 	addPlayerButton.focus();
+	document.getElementById("playerListCont").scrollTop = document.getElementById("playerListCont").scrollHeight;
 }
 
 function playersDone() {
@@ -122,7 +127,7 @@ function playersDone() {
 						await wait(2000);
 						textContainer.style.opacity = "0";
 						await wait(1000);
-						textContainer.innerHTML = "Hello, "+playerName+"!<br><br>Tap anywhere to reveal your role.";
+						textContainer.innerHTML = "Hello, "+playerName+"!<br><br>Tap anywhere to view your role.";
 						
 						textContainer.style.opacity = "1";
 						await waitForPress();
@@ -258,61 +263,66 @@ function animationsTest(elem, endEffect) {
 // Wait
 const wait = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
-// Locations List Page
-const half = Math.ceil(locations.length / 2);    
 
-const firstHalf = locations.slice(0, half)
-const secondHalf = locations.slice(half)
 
-for (i = 0; i < firstHalf.length; i++) {
-	var newItem = document.createElement("div");
-
-	newItem.setAttribute("class", "wordDiv noSelect");
-	newItem.setAttribute("data-strikethrough", "false");
-	newItem.innerHTML = firstHalf[i];
-	newItem.addEventListener("click", function() {
-		if (this.getAttribute("data-strikethrough") == "true") {
-			this.style.textDecoration = "none";
-			this.style.opacity = "1";
-			this.setAttribute("data-strikethrough", "false");
-		} else {
-			this.style.textDecoration = "line-through";
-			this.style.opacity = "0.6";
-			this.setAttribute("data-strikethrough", "true");
-		}
-	});
-
-	locationsLeftColumn.appendChild(newItem);
-}
-
-for (i = 0; i < secondHalf.length; i++) {
-	let newItem = document.createElement("div");
-
-	newItem.setAttribute("class", "wordDiv noSelect");
-	newItem.setAttribute("data-strikethrough", "false");
-	newItem.innerHTML = secondHalf[i];
-	newItem.addEventListener("click", function() {
-		if (this.getAttribute("data-strikethrough") == "true") {
-			this.style.textDecoration = "none";
-			this.style.opacity = "1";
-			this.setAttribute("data-strikethrough", "false");
-		} else {
-			this.style.textDecoration = "line-through";
-			this.style.opacity = "0.6";
-			this.setAttribute("data-strikethrough", "true");
-		}
-	});
-
-	locationsRightColumn.appendChild(newItem);
-}
-
-document.getElementById("shareButton").addEventListener("click", function() {
-	if (navigator.share) {
-	  navigator.share({
-	    title: "Spyfall Locations",
-	    url: "https://joey-wiley.github.io/spyfall/locations"
-	  })
-	  .then(() => console.log('Successful share'))
-	  .catch(error => console.log('Error sharing:', error));
+function locationsPageLoad() {
+	// Locations List Page
+	const half = Math.ceil(locations.length / 2);    
+	
+	const firstHalf = locations.slice(0, half)
+	const secondHalf = locations.slice(half)
+	
+	for (i = 0; i < firstHalf.length; i++) {
+		var newItem = document.createElement("div");
+	
+		newItem.setAttribute("class", "wordDiv noSelect");
+		newItem.setAttribute("data-strikethrough", "false");
+		newItem.innerHTML = firstHalf[i];
+		newItem.addEventListener("click", function() {
+			if (this.getAttribute("data-strikethrough") == "true") {
+				this.style.textDecoration = "none";
+				this.style.opacity = "1";
+				this.setAttribute("data-strikethrough", "false");
+			} else {
+				this.style.textDecoration = "line-through";
+				this.style.opacity = "0.6";
+				this.setAttribute("data-strikethrough", "true");
+			}
+		});
+	
+		locationsLeftColumn.appendChild(newItem);
 	}
-});
+	
+	for (i = 0; i < secondHalf.length; i++) {
+		let newItem = document.createElement("div");
+	
+		newItem.setAttribute("class", "wordDiv noSelect");
+		newItem.setAttribute("data-strikethrough", "false");
+		newItem.innerHTML = secondHalf[i];
+		newItem.addEventListener("click", function() {
+			if (this.getAttribute("data-strikethrough") == "true") {
+				this.style.textDecoration = "none";
+				this.style.opacity = "1";
+				this.setAttribute("data-strikethrough", "false");
+			} else {
+				this.style.textDecoration = "line-through";
+				this.style.opacity = "0.6";
+				this.setAttribute("data-strikethrough", "true");
+			}
+		});
+	
+		locationsRightColumn.appendChild(newItem);
+	}
+	
+	document.getElementById("shareButton").addEventListener("click", function() {
+		if (navigator.share) {
+		  navigator.share({
+		    title: document.title,
+		    text: "This",
+		    url: window.location.href
+		  })
+		  .then(() => console.log('Successful share'))
+		  .catch(error => console.log('Error sharing:', error));
+		}
+	});
+}
