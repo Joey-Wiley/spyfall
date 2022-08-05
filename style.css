@@ -1,10 +1,10 @@
 @media (max-width: 800px){
   html, body {
-    height: 100dvh !important;
+    min-height: 100dvh !important;
 	}
 }
 html, body {
-  height: 100vh;
+  min-height: 100vh;
   margin: 0px;
 	background: linear-gradient(#4228c3, #007180);
 	background-color: #4228c3;
@@ -17,6 +17,17 @@ html, body {
 } body {
 	position: relative;
 	width: 100vw;
+}
+
+#playerListCont {
+	display: block;
+	overflow: overlay;
+	max-height: 40vh;
+}
+#locationsMainCont {
+	display: block;
+	overflow: overlay;
+	max-height: calc(100vh - 250px);
 }
 	
 #textContainer {
