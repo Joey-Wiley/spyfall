@@ -127,7 +127,7 @@ function playersDone() {
 						await wait(2000);
 						textContainer.style.opacity = "0";
 						await wait(1000);
-						textContainer.innerHTML = "Hello, "+playerName+"!<br><br>Tap anywhere to view your role.";
+						textContainer.innerHTML = "Hello, "+playerName+"!<br><br>Tap anywhere to reveal your role.";
 						
 						textContainer.style.opacity = "1";
 						await waitForPress();
