@@ -2,6 +2,56 @@ document.addEventListener("touchstart", function() {}, true);
 let gradientAnimation = document.getElementById("offscreenGradient")
 let textContainer = document.getElementById("textContainer");
 let players = [];
+let errors = [];
+
+function newFinalNameCheck() {
+  let errorItems = [];
+	// Check for empty input
+	for (let i = 0; i < players.length; i++) {
+		newElem = players[i].replace(/&(nbsp|amp|quot|lt|gt);/g, "");
+		newElem2 = newElem.replace(/(<|&lt;)br\s*\/*(>|&gt;)/g,"");
+		newElem3 = newElem2.trim();
+		
+		if (!newElem3.length) {
+		  //empty name spotted
+		  errorItems.push(i);
+		}
+	}
+	//empty name not spotted
+
+	// Check for duplicate names
+	for (let i = players.length-1; i>=0; i--) {
+		let newIndex = players.findIndex(x => x === players[i]);
+		if (newIndex != i) {
+			//duplicate spotted
+			errorItems.push(i);
+			errorItems.push(newIndex);
+		}
+	}
+	//duplicate not spotted
+
+		for (let i = 0; i < players.length; i++) {
+		  //remove "error" class from every box
+		  let elementId = "player" + (i+1) + "box";
+		  if (document.getElementById(elementId).classList.contains("error")) {
+		  	document.getElementById(elementId).classList.remove("error");
+		  }
+		}
+	if (errorItems.length) {
+		for (let i = 0; i < errorItems.length; i++) {
+		  //add "error" class to errorItems
+		  let elementId = "player" + (errorItems[i]+1) + "box";
+		  document.getElementById(elementId).classList.add("error");
+		}
+	}
+	
+	
+	if (errorItems.length === 0) {
+	    return false;
+	} else {
+	    return true;
+	}
+}
 
 function newGame() {
 	gradientTransition("#008009", "#28c3b1", 1, function() {
@@ -14,7 +64,7 @@ function newGame() {
 
 		let addPlayerButton = document.createElement("div");
 		addPlayerButton.setAttribute("id", "addPlayerButton");
-		addPlayerButton.setAttribute("class", "playersBox noSelect");
+		addPlayerButton.setAttribute("class", "noSelect");
 		addPlayerButton.setAttribute("onclick", "addPlayer()");
 		addPlayerButton.innerHTML = "<span class=innerButton><img class='buttonIcon' src='icons/plus-icon.svg'>Add Player</span>";
 		textContainer.appendChild(addPlayerButton);
@@ -27,6 +77,9 @@ function newGame() {
 		startButton.setAttribute("disabled", "");
 		startButton.innerHTML = "<span class=innerButton>Start Game</span>";
 		textContainer.appendChild(startButton);
+		document.getElementById("startButton").addEventListener("click", function() {
+			document.getElementById("startButton").focus();
+		});
 	});
 }
 
@@ -38,6 +91,8 @@ function addPlayer() {
 	addPlayerButton.setAttribute("class", "playersBox playerList");
 	addPlayerButton.setAttribute("contenteditable", "true");
 	addPlayerButton.setAttribute("spellcheck", "false");
+	addPlayerButton.innerHTML = "Player "+numPlayers;
+	players.push(addPlayerButton.innerHTML);
 
 	addPlayerButton.addEventListener("focus", function() {
 		let range, selection;
@@ -53,14 +108,23 @@ function addPlayer() {
 			range.select();
 		}
 	});
-
-	addPlayerButton.addEventListener("keypress", function(event) {
+	
+	addPlayerButton.addEventListener("keyup", function(event) {
   	if (event.key === "Enter") {
     	event.preventDefault();
+			addPlayerButton.blur();
+			window.getSelection().removeAllRanges();
   	}
+		if (players.length >= 3) {
+			if (!newFinalNameCheck()) {
+				document.getElementById("startButton").disabled = false;
+			} else {
+				document.getElementById("startButton").disabled = true;
+			}
+		}
 	});
-	
-	addPlayerButton.addEventListener("blur", function() {
+
+	addPlayerButton.addEventListener("input", function() {
 		var num = addPlayerButton.id.match(/\d/g);
 		num = num.join("");
 		if (players[num-1] !== undefined) {
@@ -69,10 +133,14 @@ function addPlayer() {
 			players.push(addPlayerButton.innerHTML);
 		}
 	});
-	addPlayerButton.innerHTML = "Player "+numPlayers;
+	
 	document.getElementById("playerListCont").appendChild(addPlayerButton);
-	if (players[1] !== undefined) {
-		document.getElementById("startButton").disabled = false;
+	if (players.length >= 3) {
+		if (newFinalNameCheck()) {
+			document.getElementById("startButton").disabled = true;
+		} else {
+			document.getElementById("startButton").disabled = false;
+		}
 	}
 	addPlayerButton.focus();
 	document.getElementById("playerListCont").scrollTop = document.getElementById("playerListCont").scrollHeight;
@@ -127,7 +195,7 @@ function playersDone() {
 						await wait(2000);
 						textContainer.style.opacity = "0";
 						await wait(1000);
-						textContainer.innerHTML = "Hello, "+playerName+"!<br><br>Tap anywhere to reveal your role.";
+						textContainer.innerHTML = "Hello, "+playerName+"!<br><br>Tap anywhere to view your role.";
 						
 						textContainer.style.opacity = "1";
 						await waitForPress();
@@ -264,6 +332,11 @@ function animationsTest(elem, endEffect) {
 const wait = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
 
+function mainPageLoad() {
+	document.getElementById("newGameButton").addEventListener("click", function() {
+		document.getElementById("newGameButton").focus();
+	});
+}
 
 function locationsPageLoad() {
 	// Locations List Page
@@ -320,9 +393,7 @@ function locationsPageLoad() {
 		    title: document.title,
 		    text: "This",
 		    url: window.location.href
-		  })
-		  .then(() => console.log('Successful share'))
-		  .catch(error => console.log('Error sharing:', error));
+		  });
 		}
 	});
 }
