@@ -6,28 +6,30 @@
 	<meta name = "viewport" content = "width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no, viewport-fit=cover">
 	
 	<meta name = "theme-color" content = "#4228c3">
-  <title>Spyfall Locations</title>
+  <title>Spyfall</title>
   <link href="style.css" rel="stylesheet" type="text/css" />
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
 	<link rel="icon" type="image/x-icon" href="https://img.icons8.com/material-rounded/24/000000/spy-male.png">
 </head>
 
-<body onload="locationsPageLoad()">
+<body onload="mainPageLoad()">
+	
+	<div id="textContainer">
+		<div id="startingHeader" class="header">Spyfall</div>
+		<button onclick="newGame()" id="newGameButton" class="noSelect" tabindex="0">
+			<span class=innerButton>
+				<img class="buttonIcon" src="icons/plus-icon.svg">
+				New Game
+			</span>
+		</button>
+	</div>
 
-	<div id="locationsTextContainer">
-		<div id="startingHeader" class="header">Locations</div>
-		<span id="locationsMainCont">
-			<div id="locationsLeftColumn" style="width: calc(50% - 2.5px); float:left;"></div>
-			<div id="locationsRightColumn" style="width: calc(50% - 2.5px); float:right;"></div>
-		</span>
-	</div>
 	
-	<div id="shareButton" class="noSelect">
-		<span class=innerButton><img id='shareIcon' class='buttonIcon' src='icons/share-icon.svg'>Share</span>
-	</div>
 	
+	<div id="offscreenGradient"></div>
+
 	<script src="locations.js"></script>
-	<script src="script.js"></script>
+  <script src="script.js"></script>
 </body>
 
 </html>
