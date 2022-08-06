@@ -2,6 +2,12 @@
   html, body {
     min-height: 100dvh !important;
 	}
+	#playerListCont {
+		max-height: 40dvh !important;
+	}
+	#locatitonsMainCont {
+		max-height: calc(100dvh - 250px);
+	}
 }
 html, body {
   min-height: 100vh;
@@ -162,11 +168,17 @@ img.buttonIcon {
 	border: 2px dashed white;
 	background-color: #00000020;
 	opacity: 0.8;
-	height: 48px;
 	border-radius: 5px;
 	color: white;
 	font-weight: 600;
 	font-size: 16px;
+	
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 48px;
+	transition-duration: 200ms;
+	margin-top: 10px;
 } #addPlayerButton:hover {
 	cursor: pointer;
 	background-color: #45454520;
@@ -174,18 +186,18 @@ img.buttonIcon {
 .playersBox {
 	background-color: #00000020;
 	opacity: 0.8;
-	height: 48px;
 	border-radius: 5px;
 	color: white;
 	font-weight: 600;
 	font-size: 16px;
 	display: flex;
+	justify-content: center;
+	padding-top: 16px;
+	padding-bottom: 16px;
 	transition-duration: 200ms;
 	margin-top: 10px;
 }
 .playerList {
-	justify-content: center;
-	align-items: center;
 	transition-duration: 300ms;
 	border: 3px solid #4343f400;
 	overflow: hidden;
@@ -195,6 +207,13 @@ img.buttonIcon {
 } .playerList:focus {
 	outline: none;
 	border: 3px solid #4343f4ff;
+}
+
+.error {
+	border: 3px solid #ff0800AA;
+}
+.error:focus {
+	border: 3px solid #ff0800CC;
 }
 
 #startButton {
