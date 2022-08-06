@@ -10,6 +10,7 @@ function newGame() {
 	gradientTransition("#008009", "#28c3b1", 1, function() {
 		document.getElementById("startingHeader").innerHTML = "Players";
 		document.getElementById("newGameButton").parentElement.removeChild(document.getElementById("newGameButton"));
+		document.getElementById("imgHeader").parentElement.removeChild(document.getElementById("imgHeader"));
 
 		let playerListCont = document.createElement("span");
 		playerListCont.setAttribute("id", "playerListCont");
