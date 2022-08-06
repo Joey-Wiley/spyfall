@@ -4,54 +4,7 @@ let textContainer = document.getElementById("textContainer");
 let players = [];
 let errors = [];
 
-function newFinalNameCheck() {
-  let errorItems = [];
-	// Check for empty input
-	for (let i = 0; i < players.length; i++) {
-		newElem = players[i].replace(/&(nbsp|amp|quot|lt|gt);/g, "");
-		newElem2 = newElem.replace(/(<|&lt;)br\s*\/*(>|&gt;)/g,"");
-		newElem3 = newElem2.trim();
-		
-		if (!newElem3.length) {
-		  //empty name spotted
-		  errorItems.push(i);
-		}
-	}
-	//empty name not spotted
 
-	// Check for duplicate names
-	for (let i = players.length-1; i>=0; i--) {
-		let newIndex = players.findIndex(x => x === players[i]);
-		if (newIndex != i) {
-			//duplicate spotted
-			errorItems.push(i);
-			errorItems.push(newIndex);
-		}
-	}
-	//duplicate not spotted
-
-		for (let i = 0; i < players.length; i++) {
-		  //remove "error" class from every box
-		  let elementId = "player" + (i+1) + "box";
-		  if (document.getElementById(elementId).classList.contains("error")) {
-		  	document.getElementById(elementId).classList.remove("error");
-		  }
-		}
-	if (errorItems.length) {
-		for (let i = 0; i < errorItems.length; i++) {
-		  //add "error" class to errorItems
-		  let elementId = "player" + (errorItems[i]+1) + "box";
-		  document.getElementById(elementId).classList.add("error");
-		}
-	}
-	
-	
-	if (errorItems.length === 0) {
-	    return false;
-	} else {
-	    return true;
-	}
-}
 
 function newGame() {
 	gradientTransition("#008009", "#28c3b1", 1, function() {
@@ -116,7 +69,7 @@ function addPlayer() {
 			window.getSelection().removeAllRanges();
   	}
 		if (players.length >= 3) {
-			if (!newFinalNameCheck()) {
+			if (!finalNameCheck()) {
 				document.getElementById("startButton").disabled = false;
 			} else {
 				document.getElementById("startButton").disabled = true;
@@ -136,7 +89,7 @@ function addPlayer() {
 	
 	document.getElementById("playerListCont").appendChild(addPlayerButton);
 	if (players.length >= 3) {
-		if (newFinalNameCheck()) {
+		if (finalNameCheck()) {
 			document.getElementById("startButton").disabled = true;
 		} else {
 			document.getElementById("startButton").disabled = false;
@@ -396,4 +349,54 @@ function locationsPageLoad() {
 		  });
 		}
 	});
+}
+
+// Final Name Check
+function finalNameCheck() {
+  let errorItems = [];
+	// Check for empty input
+	for (let i = 0; i < players.length; i++) {
+		newElem = players[i].replace(/&(nbsp|amp|quot|lt|gt);/g, "");
+		newElem2 = newElem.replace(/(<|&lt;)br\s*\/*(>|&gt;)/g,"");
+		newElem3 = newElem2.trim();
+		
+		if (!newElem3.length) {
+		  //empty name spotted
+		  errorItems.push(i);
+		}
+	}
+	//empty name not spotted
+
+	// Check for duplicate names
+	for (let i = players.length-1; i>=0; i--) {
+		let newIndex = players.findIndex(x => x === players[i]);
+		if (newIndex != i) {
+			//duplicate spotted
+			errorItems.push(i);
+			errorItems.push(newIndex);
+		}
+	}
+	//duplicate not spotted
+
+		for (let i = 0; i < players.length; i++) {
+		  //remove "error" class from every box
+		  let elementId = "player" + (i+1) + "box";
+		  if (document.getElementById(elementId).classList.contains("error")) {
+		  	document.getElementById(elementId).classList.remove("error");
+		  }
+		}
+	if (errorItems.length) {
+		for (let i = 0; i < errorItems.length; i++) {
+		  //add "error" class to errorItems
+		  let elementId = "player" + (errorItems[i]+1) + "box";
+		  document.getElementById(elementId).classList.add("error");
+		}
+	}
+	
+	
+	if (errorItems.length === 0) {
+	    return false;
+	} else {
+	    return true;
+	}
 }
