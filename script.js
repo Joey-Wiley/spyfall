@@ -123,6 +123,11 @@ function playersDone() {
 				  if (waitForPressResolve) waitForPressResolve();
 				}
 				
+				textContainer.style.backgroundColor = "transparent";
+				textContainer.style.fontSize = "28px";
+				textContainer.style.width = "auto";
+				textContainer.style.opacity = "0";
+				await wait(1000);
 				async function doIt() {
 				  btn.addEventListener('click', btnResolver);
 				  for (i = 0; i < players.length; i++) {
@@ -139,8 +144,6 @@ function playersDone() {
 						textContainer.style.backgroundColor = "transparent";
 						textContainer.style.fontSize = "28px";
 						textContainer.style.width = "auto";
-						textContainer.style.opacity = "0";
-						await wait(1000);
 						
 						textContainer.innerHTML = "Pass to "+playerName;
 						
@@ -148,12 +151,13 @@ function playersDone() {
 						await wait(2000);
 						textContainer.style.opacity = "0";
 						await wait(1000);
-						textContainer.innerHTML = "Hello, "+playerName+"!<br><br>Tap anywhere to view your role.";
+						textContainer.innerHTML = "Hello, "+playerName+"!<br><br>Tap anywhere to reveal your role.";
 						
 						textContainer.style.opacity = "1";
 						await waitForPress();
 						textContainer.style.opacity = "0";
-						await wait(1000);
+						textContainer.style.transitionDuration = "500ms";
+						await wait(500);
 						textContainer.style.backgroundColor = "#00000033";
 						textContainer.style.fontSize = "28px";
 						textContainer.style.width = "300px";
@@ -162,7 +166,8 @@ function playersDone() {
 						await wait(1000);
 						await waitForPress();
 						textContainer.style.opacity = "0";
-						await wait (1000);
+						await wait(1000);
+						textContainer.style.transitionDuration = "1000ms";
 					}
 				  btn.removeEventListener('click', btnResolver);
 					textContainer.style.backgroundColor = "transparent";
